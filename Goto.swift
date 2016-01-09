@@ -1,5 +1,5 @@
 public struct Goto {
-  internal typealias Closure = () -> Void
+  public typealias Closure = () -> Void
   internal var closures = [String: Closure]()
   public mutating func set(label: String, closure: Closure) {
     closures[label] = closure
@@ -9,7 +9,7 @@ public struct Goto {
   }
 }
 
-public infix operator • { associativity left precedence 140 }
+infix operator • { associativity left precedence 140 }
 public func •(goto: Goto, label: String) {
   goto.call(label)
 }

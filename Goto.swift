@@ -1,15 +1,15 @@
-struct Goto {
-  typealias Closure = () -> Void
-  var closures = [String: Closure]()
-  mutating func set(label: String, closure: Closure) {
+public struct Goto {
+  internal typealias Closure = () -> Void
+  internal var closures = [String: Closure]()
+  public mutating func set(label: String, closure: Closure) {
     closures[label] = closure
   }
-  func call(label: String) {
+  public func call(label: String) {
     closures[label]?()
   }
 }
 
-infix operator • { associativity left precedence 140 }
-func •(goto: Goto, label: String) {
+public infix operator • { associativity left precedence 140 }
+public func •(goto: Goto, label: String) {
   goto.call(label)
 }

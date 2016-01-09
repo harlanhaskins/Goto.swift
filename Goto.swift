@@ -7,6 +7,7 @@ public struct Goto {
   public func call(label: String) {
     closures[label]?()
   }
+  public init() {}
 }
 
 infix operator • { associativity left precedence 140 }

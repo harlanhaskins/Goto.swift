@@ -1,4 +1,5 @@
 @dynamicCallable
+@dynamicMemberLookup
 public struct Goto {
   public typealias Closure = () -> Void
   public private(set) var closures = [String: Closure]()
@@ -9,6 +10,15 @@ public struct Goto {
 
   public func call(label: String) {
     closures[label]?()
+  }
+
+  // MARK: - Dynamic Member Lookup Support
+
+  /// Enables dynamic member syntax: goto.labelName()
+  public subscript(dynamicMember label: String) -> Closure {
+    return { [self] in
+      self.closures[label]?()
+    }
   }
 
   // MARK: - Dynamic Callable Support
